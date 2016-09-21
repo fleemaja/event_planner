@@ -1,5 +1,7 @@
-// Load the http module to create an http server.
 var http = require('http');
+var express = require('express');
+var routes = require('./app/routes/index.js');
+var mongoose = require('mongoose');
 
 // Configure our HTTP server to respond with Hello World to all requests.
 var server = http.createServer(function (request, response) {
