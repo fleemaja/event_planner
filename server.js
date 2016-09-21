@@ -4,16 +4,24 @@ var routes = require('./app/routes/index.js');
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 
+var passport = require('passport');
+var session = require('express-session');
+
 var app = express();
 app.use(bodyParser.urlencoded());
 require('dotenv').load();
+require('./app/config/passport')(passport);
 
 app.set('view engine', 'ejs');
 
 app.use('/controllers', express.static(process.cwd() + '/app/controllers'));
 app.use('/public', express.static(process.cwd() + '/public'));
 
-routes(app);
+app.use(session({ secret: process.env.SUPER_SECRET }));
+app.use(passport.initialize());
+app.use(passport.session());
+
+routes(app, passport);
 
 mongoose.connect(process.env.MONGO_URI || "mongodb://localhost:27017/clementinejs");
 
