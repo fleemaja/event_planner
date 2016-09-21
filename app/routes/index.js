@@ -9,6 +9,6 @@ module.exports = function (app) {
         	eventController.index(req, res);
         })
         .post(function(req, res) {
-          eventController.create(req, res);
+            eventController.create(req, res);
         });
 }
