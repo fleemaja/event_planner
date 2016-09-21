@@ -3,11 +3,17 @@ var express = require('express');
 var routes = require('./app/routes/index.js');
 var mongoose = require('mongoose');
 
-// Configure our HTTP server to respond with Hello World to all requests.
-var server = http.createServer(function (request, response) {
-  response.writeHead(200, {"Content-Type": "text/plain"});
-  response.end("Hello World\n");
-});
+var app = express();
+require('dotenv').load();
 
-// Listen on port 8000, IP defaults to 127.0.0.1
-server.listen(8000);
+app.set('view engine', 'ejs');
+
+app.use('/controllers', express.static(process.cwd() + '/app/controllers'));
+app.use('/public', express.static(process.cwd() + '/public'));
+
+routes(app);
+
+var port = 8080;
+app.listen(port,  function () {
+	console.log('Node.js listening on port ' + port + '...');
+});

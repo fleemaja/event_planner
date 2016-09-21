@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Events</title>
+  </head>
+  <body>
+    <h1>Events</h1>
+
+    <form action="/">
+      <label for="new-event">
+        <p>Create New Event</p>
+        <input type="text" id="new-event" required>
+      </label>
+      <input type="submit">
+    </form>
+
+    <ul>
+      <% events.forEach(function(event) { %>
+        <li><%= event.title %></li>
+      <% }) %>
+    </ul>
+
+  </body>
+</html>
