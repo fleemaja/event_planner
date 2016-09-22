@@ -7,10 +7,42 @@
   <body>
     <h1>Events</h1>
 
-    <form action="/" method="post">
-      <label for="new-event">
-        <p>Create New Event</p>
-        <input type="text" id="new-event" name="title" required>
+    <form action="/" method="post" style="background: #ddd;">
+      <label for="event-title">
+        <p>Event Title</p>
+        <input type="text" id="event-title" name="title" autofocus required>
+      </label>
+      <label for="event-type">
+        <p>Event Type</p>
+        <input type="text" id="event-type" name="eventType" required>
+      </label>
+      <label for="event-host">
+        <p>Event Host</p>
+        <input type="text" id="event-host" name="eventHost" required>
+      </label>
+      <label for="event-location">
+        <p>Location</p>
+        <input type="text" id="event-location" name="eventLocation" required>
+      </label>
+      <label for="event-start">
+        <p>Start Time</p>
+        <input type="datetime-local" id="event-start" name="startDate" required>
+      </label>
+      <label for="event-end">
+        <p>End Time</p>
+        <input type="datetime-local" id="event-end" name="endDate" required>
+      </label>
+      <label for="event-guestList">
+        <fieldset class="form-group" id="event-guestList">
+            <input type="hidden" name="guestList" id="guestList" value="">
+            <input type="text" class="form-control form-guestList" placeholder="Guest 1">
+            <input type="text" class="form-control form-guestList" placeholder="Guest 2">
+        </fieldset>
+        <p id="add-guest">+ Add a Guest</p>
+      </label>
+      <label for="event-message">
+        <p>Message (optional)</p>
+        <input type="textarea" id="event-message" name="message">
       </label>
       <input type="submit">
     </form>
@@ -20,9 +52,37 @@
 
     <ul>
       <% events.forEach(function(event) { %>
-        <li><%= event.title %></li>
+        <li>
+          <p><%= "Title: " + event.title %></p>
+          <p><%= "Type: " + event.eventType %></p>
+          <p><%= "Host: " + event.eventHost %></p>
+          <p><%= "Start Time: " + event.startDate %></p>
+          <p><%= "End Time: " + event.endDate %></p>
+          <p><%= "Guests: " + event.guestList.join(", ") %></p>
+          <p><%= "Location: " + event.eventLocation %></p>
+          <p><%= "Message: " + event.message %></p>
+        </li>
       <% }) %>
     </ul>
 
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+  
+  <script>
+    var Guest = 3;
+    $('#add-guest').click(function(e) {
+      $('#event-guestList').append('<input type="text" class="form-control form-guestList" placeholder="Guest ' + Guest + '" >');
+      Guest += 1;
+    });
+    
+    $('#event-guestList').change(function() {
+      var guests = [];
+      $(".form-guestList").each(function() {
+        var guestVal = $(this).val().replace(/\,/g, '&#44;');
+        guests.push(guestVal);
+      });
+      $('#guestList').val(guests);
+    });
+  </script>
+  
   </body>
 </html>
