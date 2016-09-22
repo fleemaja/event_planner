@@ -5,20 +5,29 @@ var eventController = require(path + '/app/controllers/eventController.js');
 
 module.exports = function (app, passport) {
     function isLoggedIn(req, res, next) {
-		if (req.isAuthenticated()) {
-			return next();
-		} else {
-			return res.redirect('/');
-		}
-	}
+  		if (req.isAuthenticated()) {
+  			return next();
+  		} else {
+  			return res.redirect('/');
+  		}
+  	}
 	
     app.route('/')
         .get(function(req, res) {
-        	eventController.index(req, res);
+        	  eventController.index(req, res);
         })
         .post(isLoggedIn, function(req, res) {
             eventController.create(req, res);
         });
+        
+    app.route('/user')
+        .get(function(req, res) {
+            if (req.user) {
+              return res.status(200).json(JSON.stringify(req.user))
+            } else {
+              return res.send("Error - no user");
+            }
+        })
         
     app.route('/signup')
       .get(function(req, res) {
@@ -38,9 +47,9 @@ module.exports = function (app, passport) {
                 failureRedirect: '/login'
               }));
 
-	app.route('/logout')
-		.get(function (req, res) {
-			req.logout();
-			res.redirect('/');
-		});
+  	app.route('/logout')
+  		.get(function (req, res) {
+  			req.logout();
+  			res.redirect('/');
+  		});
 }
