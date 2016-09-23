@@ -31,7 +31,7 @@
 	      </div>
 	  </div>
 	  
-	 <div id="loginModal" class="modal">
+	  <div id="loginModal" class="modal">
 	      <div class="modal-content">
 	      	<div class="modal-header">
 	      		<button type="button" class="close" aria-label="Close">
@@ -43,52 +43,26 @@
 	      </div>
 	  </div>
 	    
-    <form action="/" method="post" style="background: #ddd;">
-      <label for="event-title">
-        <p>Event Title</p>
-        <input type="text" id="event-title" name="title" autofocus required>
-      </label>
-      <label for="event-type">
-        <p>Event Type</p>
-        <input type="text" id="event-type" name="eventType" required>
-      </label>
-      <label for="event-host">
-        <p>Event Host</p>
-        <input type="text" id="event-host" name="eventHost" required>
-      </label>
-      <label for="event-location">
-        <p>Location</p>
-        <input type="text" id="event-location" name="eventLocation" required>
-      </label>
-      <label for="event-start">
-        <p>Start Time</p>
-        <input type="datetime-local" id="event-start" name="startDate" required>
-      </label>
-      <label for="event-end">
-        <p>End Time</p>
-        <input type="datetime-local" id="event-end" name="endDate" required>
-      </label>
-      <label for="event-guestList">
-        <fieldset class="form-group" id="event-guestList">
-            <input type="hidden" name="guestList" id="guestList" value="">
-            <input type="text" class="form-control form-guestList" placeholder="Guest 1">
-            <input type="text" class="form-control form-guestList" placeholder="Guest 2">
-        </fieldset>
-        <p id="add-guest">+ Add a Guest</p>
-      </label>
-      <label for="event-message">
-        <p>Message (optional)</p>
-        <input type="textarea" id="event-message" name="message">
-      </label>
-      <input type="submit">
-    </form>
+	  <div id="newEventModal" class="modal">
+	      <div class="modal-content">
+	      	<div class="modal-header">
+	      		<button type="button" class="close" aria-label="Close">
+		          <span aria-hidden="true">&times;</span>
+		        </button>
+		        <h1><span class="fa fa-calendar"></span> New Event</h1>
+	      	</div>
+	      	<%- include newEvent.ejs %>
+	      </div>
+	  </div>
     
-    <% if (user) { %>
-      <a href="/logout" class="btn btn-default"><span class="fa fa-user"></span> Logout</a>
-    <% } else { %>
-      <div id="signup" class="btn btn-default"><span class="fa fa-user"></span> Signup</div>
-      <div id="login" class="btn btn-default"><span class="fa fa-user"></span> Login</div>
-    <% } %>
+    <div id="user-options">
+      <% if (user) { %>
+        <a href="/logout" class="btn btn-default"><span class="fa fa-user"></span> Logout</a>
+      <% } else { %>
+        <div class="btn btn-default signup"><span class="fa fa-user"></span> Signup</div>
+        <div class="btn btn-default login"><span class="fa fa-user"></span> Login</div>
+      <% } %>
+    </div>
 
     <div class="grid" data-masonry='{ "columnWidth": 300, "itemSelector": ".grid-item", "isFitWidth": true, "gutter": 20 }'>
       <% events.forEach(function(event) { %>
@@ -103,6 +77,16 @@
         </div>
       <% }) %>
     </div>
+    
+    <footer class="footer">
+      <div class="container">
+        <% if (user) { %>
+          <div id="newEvent" class="btn btn-default newEvent">Add Event</div>
+        <% } else { %>
+          <div class="btn btn-default newEvent signup">Add Event</a>
+        <% } %>
+      </div>
+    </footer>
 
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/masonry/4.1.1/masonry.pkgd.min.js"></script>
@@ -125,18 +109,24 @@
 			
 		var signupModal = $('#signupModal');
 		var loginModal = $('#loginModal');
+		var newEventModal = $('#newEventModal');
 		
 		$('.close').on('click', function() {
     	signupModal.hide();
     	loginModal.hide();
+    	newEventModal.hide();
     });
     
-    $('#signup').on('click', function(e) {
+    $('.signup').on('click', function(e) {
       signupModal.show();
     });
     
-    $('#login').on('click', function(e) {
+    $('.login').on('click', function(e) {
       loginModal.show();
+    });
+    
+    $('#newEvent').on('click', function(e) {
+      newEventModal.show();
     });
 
   </script>
