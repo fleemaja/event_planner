@@ -2,11 +2,23 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Events</title>
+    <title>Event Planner</title>
+    
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+		<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+		<link href="/public/css/main.css" rel="stylesheet" type="text/css">
   </head>
+  
   <body>
-    <h1>Events</h1>
-
+    
+    <header>
+      <nav class="navbar navbar-default">
+          <div class="navbar-header">
+    	      <span class="fa fa-calendar"></span> Event Planner
+    	    </div>
+      </nav>
+    </header>
+    
     <form action="/" method="post" style="background: #ddd;">
       <label for="event-title">
         <p>Event Title</p>
@@ -50,22 +62,22 @@
     <a href="/signup">Sign up</a>
     <a href="/login">Login</a>
 
-    <ul>
+    <div class="grid">
       <% events.forEach(function(event) { %>
-        <li>
+        <div class="grid-item">
           <p><%= "Title: " + event.title %></p>
           <p><%= "Type: " + event.eventType %></p>
           <p><%= "Host: " + event.eventHost %></p>
-          <p><%= "Start Time: " + event.startDate %></p>
-          <p><%= "End Time: " + event.endDate %></p>
+          <p><%= event.startDate + " - " + event.endDate %></p>
           <p><%= "Guests: " + event.guestList.join(", ") %></p>
           <p><%= "Location: " + event.eventLocation %></p>
           <p><%= "Message: " + event.message %></p>
-        </li>
+        </div>
       <% }) %>
-    </ul>
+    </div>
 
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/masonry/4.1.1/masonry.pkgd.min.js"></script>
   
   <script>
     var Guest = 3;
@@ -82,6 +94,13 @@
       });
       $('#guestList').val(guests);
     });
+    
+    var msnry = new Masonry( '.grid', {
+			  columnWidth: 300,
+			  isFitWidth: true, 
+			  gutter: 20,
+			  itemSelector: '.grid-item'
+			});
   </script>
   
   </body>

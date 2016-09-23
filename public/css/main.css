@@ -1,0 +1,26 @@
+body {
+    font-family: sans-serif;
+    background: #f5f8fa;
+}
+
+.navbar-header {
+    font-weight: 900;
+    font-size: 32px;
+    margin-left: 2%;
+    color: #333;
+}
+
+.grid {
+    margin: 0 auto;
+}
+
+.grid-item { 
+    width: 300px;
+    float: left;
+    background: white;
+    margin-bottom: 20px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #e1e8ed;
+    overflow: scroll;
+}
