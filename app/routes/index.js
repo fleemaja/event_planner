@@ -20,31 +20,16 @@ module.exports = function (app, passport) {
             eventController.create(req, res);
         });
         
-    app.route('/user')
-        .get(function(req, res) {
-            if (req.user) {
-              return res.status(200).json(JSON.stringify(req.user))
-            } else {
-              return res.send("Error - no user");
-            }
-        })
-        
     app.route('/signup')
-      .get(function(req, res) {
-      	res.render(path + '/public/html/signup.ejs');
-      })
       .post(passport.authenticate('local-signup', 
               { successRedirect: '/',
-                failureRedirect: '/signup'
+                failureRedirect: '/'
               }));
               
     app.route('/login')
-      .get(function(req, res) {
-      	res.render(path + '/public/html/login.ejs');
-      })
       .post(passport.authenticate('local-login', 
               { successRedirect: '/',
-                failureRedirect: '/login'
+                failureRedirect: '/'
               }));
 
   	app.route('/logout')

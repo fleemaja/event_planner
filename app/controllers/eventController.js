@@ -5,7 +5,11 @@ var path = process.cwd();
 exports.index = function(req, res) {
   Event.find({}, function(err, events) {
     if(err) { return handleError(res, err); }
-    res.render(path + '/public/html/index.ejs', { events: events });
+    var user;
+    if (req.user) {
+      user = req.user._id.toString()
+    }
+    res.render(path + '/public/html/index.ejs', { events: events, user: user });
   });
 };
 

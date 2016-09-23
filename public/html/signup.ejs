@@ -1,34 +1,23 @@
-<html>
+<div>
     
-    <head>
-    	<title>Signup</title>
-    	
-    	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" type="text/css">
-    	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
-    </head>
-    
-    <div class="container">
-    
-    <div class="col-sm-6 col-sm-offset-3">
-    
-        <h1><span class="fa fa-sign-in"></span> Signup</h1>
+    <div>
     
         <!-- LOGIN FORM -->
         <form action="/signup" method="post">
             <div class="form-group">
                 <label>Email</label>
-                <input type="text" class="form-control" name="email" autofocus>
+                <input type="text" class="form-control" name="email" required autofocus>
             </div>
             <div class="form-group">
                 <label>Password</label>
-                <input type="password" class="form-control" name="password">
+                <input type="password" class="form-control" name="password" required>
             </div>
             <div class="form-group">
                 <label>Name</label>
-                <input type="text" class="form-control" name="name">
+                <input type="text" class="form-control" name="name" required>
             </div>
             <div class="form-group">
-                <label>Public Bio</label>
+                <label>Public Bio (optional)</label>
                 <input type="textarea" class="form-control" name="publicBio">
             </div>
     
@@ -41,6 +30,4 @@
         <p>Or go <a href="/">home</a>.</p>
     
     </div>
-    
-    </div>
-</html>
+</div>
