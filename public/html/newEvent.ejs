@@ -11,7 +11,9 @@
       <input list="events" id="event-type" class="form-control" name="eventType" placeholder="party, birthday, etc." required>
       <datalist id="events">
         <option value="Party"></option>
+        <option value="Birthday"></option>
         <option value="Meeting"></option>
+        <option value="Wedding"></option>
         <option value="Conference Talk"></option>
         <option value="Sports Game"></option>
       </datalist>
@@ -20,7 +22,7 @@
   <div class="form-group">
     <label for="event-host">
       <span>Who's Hosting?</span>
-      <input type="text" id="event-host" class="form-control" name="eventHost" value="<%= user %>" required>
+      <input type="text" id="event-host" class="form-control" name="eventHost" value="<%= user %>" placeholder="individual’s name, an organization, etc" required>
     </label>
   </div>
   <div class="form-group">
@@ -43,13 +45,12 @@
   </div>
   <div class="form-group">
     <label for="event-guestList">
-      <span id="guestList-text">Guest List</span>
+      <span id="guestList-text">Guest List <span id="add-guest">+ Add a Guest</span></span>
       <fieldset class="form-group" id="event-guestList">
-          <input type="hidden" name="guestList" id="guestList" value="">
+          <input type="hidden" name="guestList" id="guestList" value="" required>
           <input type="text" class="form-control form-guestList" placeholder="Guest 1">
           <input type="text" class="form-control form-guestList" placeholder="Guest 2">
       </fieldset>
-      <p id="add-guest">+ Add a Guest</p>
     </label>
   </div>
   <div class="form-group">

@@ -82,8 +82,8 @@ body {
           margin: 1% auto; /* 15% from the top and centered */
           padding: 0 20px;
           border: 1px solid #888;
-          width: 30%; /* Could be more or less, depending on screen size */
-          min-width: 300px;
+          width: 90%; /* Could be more or less, depending on screen size */
+          max-width: 540px;
           
             h1 {
                 padding: 0px;
@@ -100,6 +100,7 @@ body {
                 #add-guest {
                     cursor: pointer;
                     color: $orange;
+                    float: right;
                 }
             }
             
@@ -119,6 +120,7 @@ body {
                     display: inline;
                     margin-bottom: 4px;
                     width: 118px;
+                    text-overflow: ellipsis;
                 }
             }
             

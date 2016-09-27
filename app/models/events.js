@@ -29,6 +29,9 @@ EventSchema.pre('save', function(next) {
     guest = sanitizeHtml(guest, sanitize);
     return guest;
   });
+  this.guestList = this.guestList.filter(function(guest) {
+    return guest != "";
+  });
   this.eventLocation = sanitizeHtml(this.eventLocation, sanitize);
   this.message = sanitizeHtml(this.message, sanitize);
   next();
