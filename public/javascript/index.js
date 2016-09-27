@@ -1,6 +1,6 @@
 var Guest = 3;
 $('#add-guest').click(function(e) {
-  $('#event-guestList').append('<input type="text" class="form-control form-guestList" placeholder="Guest ' + Guest + '" >');
+  $('#event-guestList').append('<input type="text" class="form-control form-guestList" placeholder="Guest ' + Guest + '" style="margin-right: 4px;" >');
   Guest += 1;
 });
 
@@ -25,12 +25,20 @@ $('.close').on('click', function() {
 
 $('.signup').on('click', function(e) {
   signupModal.show();
+  focusFirstInput(signupModal);
 });
 
 $('.login').on('click', function(e) {
   loginModal.show();
+  focusFirstInput(loginModal);
 });
 
 $('#newEvent').on('click', function(e) {
   newEventModal.show();
+  focusFirstInput(newEventModal);
 });
+
+function focusFirstInput(modal) {
+  var firstInput = modal.find('input[type=text],textarea,select').filter(':visible:first');
+  firstInput.focus();
+}

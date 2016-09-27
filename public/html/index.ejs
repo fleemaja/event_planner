@@ -2,6 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Event Planner</title>
     
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" type="text/css">
@@ -13,9 +14,7 @@
     
     <header>
       <nav class="navbar navbar-default">
-          <div class="navbar-header">
-    	      <span class="fa fa-calendar"></span> Event Planner
-    	    </div>
+          <span class="fa fa-calendar"></span> Event Planner
       </nav>
     </header>
     
@@ -67,13 +66,18 @@
     <div class="grid" data-masonry='{ "columnWidth": 300, "itemSelector": ".grid-item", "isFitWidth": true, "gutter": 20 }'>
       <% events.forEach(function(event) { %>
         <div class="grid-item">
-          <p><%= "Title: " + event.title %></p>
-          <p><%= "Type: " + event.eventType %></p>
-          <p><%= "Host: " + event.eventHost %></p>
-          <p><%= event.startDate + " - " + event.endDate %></p>
-          <p><%= "Guests: " + event.guestList.join(", ") %></p>
-          <p><%= "Location: " + event.eventLocation %></p>
-          <p><%= "Message: " + event.message %></p>
+          <h2><%= event.title %></h2>
+          <p><%= event.eventType %> &bull; <span class="grid-item-label">Hosted by</span> <%= event.eventHost %></p>
+          <hr>
+          <p><span class="fa fa-clock-o"></span> <%= event.startDate + " - " + event.endDate %></p>
+          <p><span class="fa fa-map-marker"></span> <%= event.eventLocation %></p>
+          <% if (event.guestList[0] != "") { %>
+            <p><span class="fa fa-user"></span> <span class="grid-item-label">Who's Going?</span> <%= event.guestList.join(", ") %></p>
+          <% } %>
+          <% if (event.message) { %>
+            <hr>
+            <p><span class="grid-item-label">Details:</span> <%= event.message %></p>
+          <% } %>
         </div>
       <% }) %>
     </div>

@@ -7,14 +7,16 @@ exports.index = function(req, res) {
     if(err) { return handleError(res, err); }
     var user;
     if (req.user) {
-      user = req.user._id.toString()
+      user = req.user.name;
     }
     res.render(path + '/public/html/index.ejs', { events: events, user: user });
   });
 };
 
 exports.create = function(req, res) {
-  Event.create(req.body, function(err, event) {
+  var eventData = _.clone(req.body, true);
+  eventData.guestList = eventData.guestList.split(",");
+  Event.create(eventData, function(err, event) {
     if(err) { return handleError(res, err); }
     return res.redirect('/');
   });

@@ -1,39 +1,63 @@
 <form action="/" method="post">
-  <label for="event-title">
-    <p>Event Title</p>
-    <input type="text" id="event-title" name="title" autofocus required>
-  </label>
-  <label for="event-type">
-    <p>Event Type</p>
-    <input type="text" id="event-type" name="eventType" required>
-  </label>
-  <label for="event-host">
-    <p>Event Host</p>
-    <input type="text" id="event-host" name="eventHost" required>
-  </label>
-  <label for="event-location">
-    <p>Location</p>
-    <input type="text" id="event-location" name="eventLocation" required>
-  </label>
-  <label for="event-start">
-    <p>Start Time</p>
-    <input type="datetime-local" id="event-start" name="startDate" required>
-  </label>
-  <label for="event-end">
-    <p>End Time</p>
-    <input type="datetime-local" id="event-end" name="endDate" required>
-  </label>
-  <label for="event-guestList">
-    <fieldset class="form-group" id="event-guestList">
-        <input type="hidden" name="guestList" id="guestList" value="">
-        <input type="text" class="form-control form-guestList" placeholder="Guest 1">
-        <input type="text" class="form-control form-guestList" placeholder="Guest 2">
-    </fieldset>
-    <p id="add-guest">+ Add a Guest</p>
-  </label>
-  <label for="event-message">
-    <p>Message (optional)</p>
-    <input type="textarea" id="event-message" name="message">
-  </label>
-  <input type="submit">
+  <div class="form-group">
+    <label for="event-title">
+      <span>Event Name</span>
+      <input type="text" id="event-title" class="form-control" name="title" placeholder="Add a short, clear name" required>
+    </label>
+  </div>
+  <div class="form-group">
+    <label for="event-type">
+      <span>What Kind of Event is It?</span>
+      <input list="events" id="event-type" class="form-control" name="eventType" placeholder="party, birthday, etc." required>
+      <datalist id="events">
+        <option value="Party"></option>
+        <option value="Meeting"></option>
+        <option value="Conference Talk"></option>
+        <option value="Sports Game"></option>
+      </datalist>
+    </label>
+  </div>
+  <div class="form-group">
+    <label for="event-host">
+      <span>Who's Hosting?</span>
+      <input type="text" id="event-host" class="form-control" name="eventHost" value="<%= user %>" required>
+    </label>
+  </div>
+  <div class="form-group">
+    <label for="event-location">
+      <span>Location</span>
+      <input type="text" id="event-location" class="form-control" name="eventLocation" placeholder="include a place or address" required>
+    </label>
+  </div>
+  <div class="form-group">
+    <label for="event-start">
+      <span>Start Time</span>
+      <input type="datetime-local" id="event-start" class="form-control" name="startDate" required>
+    </label>
+  </div>
+  <div class="form-group">
+    <label for="event-end">
+      <span>End Time</span>
+      <input type="datetime-local" id="event-end" class="form-control" name="endDate" required>
+    </label>
+  </div>
+  <div class="form-group">
+    <label for="event-guestList">
+      <span id="guestList-text">Guest List</span>
+      <fieldset class="form-group" id="event-guestList">
+          <input type="hidden" name="guestList" id="guestList" value="">
+          <input type="text" class="form-control form-guestList" placeholder="Guest 1">
+          <input type="text" class="form-control form-guestList" placeholder="Guest 2">
+      </fieldset>
+      <p id="add-guest">+ Add a Guest</p>
+    </label>
+  </div>
+  <div class="form-group">
+    <label for="event-message">
+      <span>Message (optional)</span>
+      <textarea rows="4" id="event-message" class="form-control" name="message" placeholder="Tell people more about the event"></textarea>
+    </label>
+  </div>
+    
+  <button type="submit" class="btn btn-warning btn-lg">Submit</button>
 </form>

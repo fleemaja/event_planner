@@ -1,108 +1,153 @@
+$orange: #f0ad4e;
+
 body {
     font-family: sans-serif;
     background: #f5f8fa;
     color: #334;
     font-size: 16px;
-}
-
-.navbar-default {
-    background: white;
-}
-
-.navbar-header {
-    font-weight: 900;
-    font-size: 32px;
-    margin-left: 2%;
-    color: #777;
-}
-
-#user-options {
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-.grid {
-    margin: 0 auto;
-}
-
-.grid-item { 
-    width: 300px;
-    float: left;
-    background: white;
-    margin-bottom: 20px;
-    padding: 10px;
-    border-radius: 5px;
-    border: 1px solid #e1e8ed;
-    overflow: scroll;
-}
-
-.fa {
-    color: #f0ad4e;
-}
-
-/* The Modal (background) */
-.modal {
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
-  text-align: center;
-  left: 0;
-  top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-}
-
-/* Modal Content/Box */
-.modal-content {
-  background-color: #fefefe;
-  color: #66757f;
-  margin: 1% auto; /* 15% from the top and centered */
-  padding: 0 20px;
-  border: 1px solid #888;
-  width: 30%; /* Could be more or less, depending on screen size */
-  min-width: 300px;
-}
-
-.modal-content h1 {
-    padding: 0px;
-    margin: 0px;
-}
-
-.modal-content form {
-    text-align: left;
-}
-
-.modal-content .btn {
-    width: 50%;
-    margin: 0 auto;
-    background: #f0ad4e;
-    color: white;
-    font-weight: 900;
-    margin-bottom: 20px;
-}
-
-.footer {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    height: 60px;
-    background-color: transparent;
-    text-align: center;
-}
-
-.newEvent {
-    font-size: 24px;
-    color: white;
-    background: #3A6D9B;
-    border: none;
-    padding: 5px 25px;
-}
-
-.newEvent:hover {
-    opacity: 0.5;
-    color: white;
-    background: #3A6D9B;
-}
+    
+    label {
+        width: 100%;
+    }
+    
+    .btn {
+        font-size: 16px;
+    }
+    
+    .navbar-default {
+        background: white;
+        font-weight: 900;
+        font-size: 32px;
+        color: #777;
+        text-align: center;
+    }
+    
+    #user-options {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    
+    .grid {
+        margin: 0 auto;
+        margin-bottom: 60px;
+        
+        .grid-item { 
+            width: 300px;
+            float: left;
+            background: white;
+            margin-bottom: 20px;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #e1e8ed;
+            overflow: scroll;
+            
+            h2 {
+                padding: 0;
+                margin: 0;
+            }
+            
+            hr {
+                margin-top: 5px;
+                margin-bottom: 12px;
+            }
+            
+            .grid-item-label {
+                color: #999;
+            }
+        }
+    }
+    
+    .fa {
+        color: $orange;
+    }
+    
+    /* The Modal (background) */
+    .modal {
+      display: none; /* Hidden by default */
+      position: fixed; /* Stay in place */
+      z-index: 1; /* Sit on top */
+      text-align: center;
+      left: 0;
+      top: 0;
+      width: 100%; /* Full width */
+      height: 100%; /* Full height */
+      overflow: auto; /* Enable scroll if needed */
+      background-color: rgb(0,0,0); /* Fallback color */
+      background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+      
+        /* Modal Content/Box */
+        .modal-content {
+          background-color: #fefefe;
+          color: #66757f;
+          margin: 1% auto; /* 15% from the top and centered */
+          padding: 0 20px;
+          border: 1px solid #888;
+          width: 30%; /* Could be more or less, depending on screen size */
+          min-width: 300px;
+          
+            h1 {
+                padding: 0px;
+                margin: 0px;
+            }
+            
+            form {
+                margin-top: 15px;
+            }
+            
+            .form-group {
+                text-align: left;
+                
+                #add-guest {
+                    cursor: pointer;
+                    color: $orange;
+                }
+            }
+            
+            .btn {
+                width: 50%;
+                margin: 0 auto;
+                background: $orange;
+                color: white;
+                font-weight: 900;
+                margin-bottom: 20px;
+            }
+            
+            #event-guestList {
+                display: inline-block;
+                
+                .form-guestList {
+                    display: inline;
+                    margin-bottom: 4px;
+                    width: 118px;
+                }
+            }
+            
+            #guestList-text {
+                display: block;
+            }
+        } // Modal Content
+    } // The Modal
+    
+    .footer {
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        height: 60px;
+        background-color: transparent;
+        text-align: center;
+        
+        .newEvent {
+            font-size: 24px;
+            color: white;
+            background: #3A6D9B;
+            border: none;
+            padding: 5px 25px;
+            
+            &:hover {
+                opacity: 0.5;
+                color: white;
+                background: #3A6D9B;
+            }
+        } // .newEvent
+    } // Footer
+} // Body
