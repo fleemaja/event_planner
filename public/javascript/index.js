@@ -44,7 +44,6 @@ function focusFirstInput(modal) {
 }
 
 $(document).ready(function(){
-  
     var startTimeDefault = new Date();
     startTimeDefault.setMinutes(0);
     var endTimeDefault = new Date(startTimeDefault);
@@ -55,13 +54,117 @@ $(document).ready(function(){
     $('#event-end').val(endTimeDefault.toJSON().slice(0,16));
 });
 
+var locationInput = document.getElementById('event-location');
+var autocomplete = new google.maps.places.Autocomplete(locationInput);
 
-var firstPasswordInput = document.querySelector('#password-input');
-var secondPasswordInput = document.querySelector('#password-input-2');
 
-/*
-I'm using this IssueTracker to help me format my validation messages.
- */
+
+// signup page front-end validation
+var nameTooltip = $('#name-tooltip');
+var emailTooltip = $('#email-tooltip');
+
+var passwordOneTooltip = $('#password-1-tooltip');
+var passwordTwoTooltip = $('#password-2-tooltip');
+
+$('#name-input').focusout(function() {
+  if (!isNameValid()) {
+    nameTooltip.css('opacity', 1);
+  }
+});
+
+$('#name-input').focusin(function() {
+  nameTooltip.css('opacity', 0);
+});
+
+$('#email-input').focusout(function() {
+  if (!isEmailValid()) {
+    emailTooltip.css('opacity', 1);
+  }
+});
+
+$('#email-input').focusin(function() {
+  emailTooltip.css('opacity', 0);
+});
+
+function isNameValid() {
+  var name = $('#name-input').val();
+  return name === "" ? false : true;
+}
+
+function isEmailValid() {
+  var email = $('#email-input').val();
+  var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  return re.test(email);
+}
+
+var firstPasswordInput = $('#password-input');
+var secondPasswordInput = $('#password-input-2');
+
+firstPasswordInput.focusout(function() {
+  var issues = passwordIssues();
+  if (!isPasswordValid(issues)) {
+    passwordOneTooltip.html('<span class="fa fa-exclamation"></span>' + issues);
+    passwordOneTooltip.css('opacity', 1);
+  }
+});
+
+firstPasswordInput.focusin(function() {
+  passwordOneTooltip.css('opacity', 0);
+});
+
+secondPasswordInput.focusout(function() {
+  var issues = secondPasswordIssues();
+  if (!isPasswordValid(issues)) {
+    passwordTwoTooltip.html('<span class="fa fa-exclamation"></span>' + issues);
+    passwordTwoTooltip.css('opacity', 1);
+  }
+});
+
+secondPasswordInput.focusin(function() {
+  passwordTwoTooltip.css('opacity', 0);
+});
+
+function passwordIssues() {
+  var firstPassword = firstPasswordInput.val();
+  var firstInputIssuesTracker = new IssueTracker();
+  
+  if (firstPassword.length < 8) {
+    firstInputIssuesTracker.add("fewer than 8 characters");
+  } else if (firstPassword.length > 50) {
+    firstInputIssuesTracker.add("greater than 50 characters");
+  }
+
+  if (!firstPassword.match(/\d/g)) {
+    firstInputIssuesTracker.add("missing a number");
+  }
+
+  if (!firstPassword.match(/[a-z]/g)) {
+    firstInputIssuesTracker.add("missing a lowercase letter");
+  }
+
+  if (!firstPassword.match(/[A-Z]/g)) {
+    firstInputIssuesTracker.add("missing an uppercase letter");
+  }
+  
+  return firstInputIssuesTracker.retrieve();
+}
+
+function secondPasswordIssues() {
+  var firstPassword = firstPasswordInput.val();
+  var secondPassword = secondPasswordInput.val();
+  var secondInputIssuesTracker = new IssueTracker();
+  
+  if (firstPassword !== secondPassword) {
+    secondInputIssuesTracker.add("Passwords must match!");
+  }
+  
+  return secondInputIssuesTracker.retrieve();
+}
+
+function isPasswordValid(issues) {
+  return issues.length > 0 ? false : true;
+}
+
 function IssueTracker() {
   this.issues = [];
 }
@@ -79,75 +182,11 @@ IssueTracker.prototype = {
         message = "Please correct the following issue:\n" + this.issues[0];
         break;
       default:
-        message = "Please correct the following issues:\n" + this.issues.join("\n");
+        message = "Please correct the following issues:\n" + this.issues.join(", ");
         break;
     }
     return message;
   }
 };
 
-$('#submit').click(function(e) {
-  /*
-  Don't forget to grab the input's .value!
-   */
-  var firstPassword = firstPasswordInput.value;
-  var secondPassword = secondPasswordInput.value;
 
-  /*
-  Make an issue tracker for each input because some validation messages should
-  end up on the first one, some on the second.
-   */
-  var firstInputIssuesTracker = new IssueTracker();
-  var secondInputIssuesTracker = new IssueTracker();
-
-  /*
-  This steps through all of the requirements and adds messages when a requirement fails.
-  Just checks the first password because the second should be the same when it runs.
-   */
-  function checkRequirements() {
-    if (firstPassword.length < 8) {
-      firstInputIssuesTracker.add("fewer than 8 characters");
-    } else if (firstPassword.length > 50) {
-      firstInputIssuesTracker.add("greater than 50 characters");
-    }
-
-    if (!firstPassword.match(/\d/g)) {
-      firstInputIssuesTracker.add("missing a number");
-    }
-
-    if (!firstPassword.match(/[a-z]/g)) {
-      firstInputIssuesTracker.add("missing a lowercase letter");
-    }
-
-    if (!firstPassword.match(/[A-Z]/g)) {
-      firstInputIssuesTracker.add("missing an uppercase letter");
-    }
-  };
-
-  /*
-  Here's the first validation check. Gotta make sure they match.
-   */
-  if (firstPassword === secondPassword && firstPassword.length > 0) {
-    /*
-    They match, so make sure the rest of the requirements have been met.
-     */
-    checkRequirements();
-  } else {
-    secondInputIssuesTracker.add("Passwords must match!");
-  }
-
-  /*
-  Get the validation message strings after all the requirements have been checked.
-   */
-  var firstInputIssues = firstInputIssuesTracker.retrieve()
-  var secondInputIssues = secondInputIssuesTracker.retrieve()
-
-  /*
-  Let input.setCustomValidity() do its magic :)
-   */
-  firstPasswordInput.setCustomValidity(firstInputIssues);
-  secondPasswordInput.setCustomValidity(secondInputIssues);
-});
-
-var locationInput = document.getElementById('event-location');
-var autocomplete = new google.maps.places.Autocomplete(locationInput);

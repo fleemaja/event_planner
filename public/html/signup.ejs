@@ -8,24 +8,28 @@
                 <label for="name-input">
                   <span>Name</span>
                   <input type="text" id="name-input" class="form-control" name="name" placeholder="Full Name" autocomplete="name" required>
+                  <div class="tooltip" id="name-tooltip"><span class="fa fa-exclamation"></span>Name is required</div>
                 </label>
             </div>
             <div class="form-group">
                 <label for="email-input">
                   <span>Email</span>
                   <input type="email" id="email-input" class="form-control" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" placeholder="name@example.com" autocomplete="email" required>
+                  <div class="tooltip" id="email-tooltip"><span class="fa fa-exclamation"></span>Email address is invalid</div>
                 </label>
             </div>
             <div class="form-group">
                 <label for="password-input">
                   <span>Password</span>
                   <input type="password" id="password-input" class="form-control" placeholder="New password" name="password" maxlength="50" required>
+                  <div class="tooltip" id="password-1-tooltip"></div>
                 </label>
             </div>
             <div class="form-group">
                 <label for="password-input-2">
                   <span>Verify Password</span>
                   <input type="password" id="password-input-2" class="form-control" placeholder="Repeat password" maxlength="50" required>
+                  <div class="tooltip" id="password-2-tooltip"></div>
                 </label>
             </div>
             <div class="form-group">
