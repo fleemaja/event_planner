@@ -189,4 +189,34 @@ IssueTracker.prototype = {
   }
 };
 
-
+$('#submit').click(function(e) {
+  var preventDefault = false;
+  
+  if (!isNameValid()) {
+    preventDefault = true;
+    nameTooltip.css('opacity', 1);
+  }
+  
+  if (!isEmailValid()) {
+    preventDefault = true;
+    emailTooltip.css('opacity', 1);
+  }
+  
+  var issues = passwordIssues();
+  if (!isPasswordValid(issues)) {
+    preventDefault = true;
+    passwordOneTooltip.html('<span class="fa fa-exclamation"></span>' + issues);
+    passwordOneTooltip.css('opacity', 1);
+  }
+  
+  var verificationIssues = secondPasswordIssues();
+  if (!isPasswordValid(verificationIssues)) {
+    preventDefault = true;
+    passwordTwoTooltip.html('<span class="fa fa-exclamation"></span>' + verificationIssues);
+    passwordTwoTooltip.css('opacity', 1);
+  }
+  
+  if (preventDefault) {
+    e.preventDefault();
+  }
+})
