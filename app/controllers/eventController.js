@@ -9,7 +9,7 @@ exports.index = function(req, res) {
     if (req.user) {
       user = req.user.name;
     }
-    newestFirstEvents = events.reverse();
+    var newestFirstEvents = events.reverse();
     res.render(path + '/public/html/index.ejs', { events: newestFirstEvents, user: user });
   });
 };
