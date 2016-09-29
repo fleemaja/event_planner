@@ -15,6 +15,15 @@ module.exports = function (app, passport) {
     app.route('/')
         .get(function(req, res) {
         	  eventController.index(req, res);
+        });
+        
+    app.route('/new')
+        .get(isLoggedIn, function(req, res) {
+            var user;
+            if (req.user) {
+                user = req.user.name;
+            }
+        	  res.render(path + '/public/html/newEvent.ejs', { user: user });
         })
         .post(isLoggedIn, function(req, res) {
             eventController.create(req, res);

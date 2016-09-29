@@ -1,20 +1,3 @@
-var newEventModal = $('#newEventModal');
-	
-$('.close').on('click', function() {
-	newEventModal.hide();
-});
-
-$('#newEvent').on('click', function(e) {
-  newEventModal.show();
-  // focusFirstInput(newEventModal);
-});
-
-// function focusFirstInput(modal) {
-//   var firstInput = modal.find('input[type=text],textarea,select').filter(':visible:first');
-//   firstInput.focus();
-// }
-
-
 // event form guest list field
 var Guest = 3;
 $('#add-guest').click(function(e) {

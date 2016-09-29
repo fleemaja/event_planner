@@ -1,68 +1,102 @@
-<form action="/" method="post">
-  <div class="form-group">
-    <label for="event-title">
-      <span>Event Name</span>
-      <input type="text" id="event-title" class="form-control" name="title" placeholder="Add a short, clear name" autofocus required>
-      <div class="tooltip" id="title-tooltip"><span class="fa fa-exclamation"></span>Name is required</div>
-    </label>
-  </div>
-  <div class="form-group">
-    <label for="event-type">
-      <span>What Kind of Event is It?</span>
-      <input list="events" id="event-type" class="form-control" name="eventType" placeholder="party, birthday, etc." required>
-      <div class="tooltip" id="type-tooltip"><span class="fa fa-exclamation"></span>Event Type is required</div>
-      <datalist id="events">
-        <option value="Party"></option>
-        <option value="Birthday"></option>
-        <option value="Meeting"></option>
-        <option value="Wedding"></option>
-        <option value="Conference Talk"></option>
-        <option value="Sports Game"></option>
-      </datalist>
-    </label>
-  </div>
-  <div class="form-group">
-    <label for="event-host">
-      <span>Who's Hosting?</span>
-      <input type="text" id="event-host" class="form-control" name="eventHost" value="<%= user %>" placeholder="individual’s name, an organization, etc" required>
-      <div class="tooltip" id="host-tooltip"><span class="fa fa-exclamation"></span>Host is required</div>
-    </label>
-  </div>
-  <div class="form-group">
-    <label for="event-location">
-      <span>Location</span>
-      <input type="text" id="event-location" class="form-control" name="eventLocation" placeholder="include a place or address" required>
-      <div class="tooltip" id="location-tooltip"><span class="fa fa-exclamation"></span>Location is required</div>
-    </label>
-  </div>
-  <div class="form-group">
-    <label for="event-start">
-      <span>Start Time</span>
-      <input type="datetime-local" id="event-start" class="form-control" name="startDate" required>
-    </label>
-  </div>
-  <div class="form-group">
-    <label for="event-end">
-      <span>End Time</span>
-      <input type="datetime-local" id="event-end" class="form-control" name="endDate" required>
-    </label>
-  </div>
-  <div class="form-group">
-    <label for="event-guestList">
-      <span id="guestList-text">Guest List <span id="add-guest">+ Add a Guest</span></span>
-      <fieldset class="form-group" id="event-guestList">
-          <input type="hidden" name="guestList" id="guestList" value="">
-          <input type="text" class="form-control form-guestList" placeholder="Guest 1">
-          <input type="text" class="form-control form-guestList" placeholder="Guest 2">
-      </fieldset>
-    </label>
-  </div>
-  <div class="form-group">
-    <label for="event-message">
-      <span>Details (optional)</span>
-      <textarea rows="4" id="event-message" class="form-control" name="message" placeholder="Tell people more about the event"></textarea>
-    </label>
-  </div>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Event</title>
     
-  <button type="submit" id="event-submit" class="btn btn-warning btn-lg">Submit</button>
-</form>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+	  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+	  <link href="/public/css/main.css" rel="stylesheet" type="text/css">
+  </head>
+  
+  <body>
+    
+    <header>
+      <nav class="navbar navbar-default">
+          <a href="/"><span class="fa fa-calendar"></span> Event Planner</a>
+      </nav>
+    </header>
+    
+    <div class="container">
+      <div>
+        <h1>New Event</h1>
+        
+        <form action="/new" method="post">
+          <div class="form-group">
+            <label for="event-title">
+              <span>Event Name</span>
+              <input type="text" id="event-title" class="form-control" name="title" placeholder="Add a short, clear name" autofocus required>
+              <div class="tooltip" id="title-tooltip"><span class="fa fa-exclamation"></span>Name is required</div>
+            </label>
+          </div>
+          <div class="form-group">
+            <label for="event-type">
+              <span>What Kind of Event is It?</span>
+              <input list="events" id="event-type" class="form-control" name="eventType" placeholder="party, birthday, etc." required>
+              <div class="tooltip" id="type-tooltip"><span class="fa fa-exclamation"></span>Event Type is required</div>
+              <datalist id="events">
+                <option value="Party"></option>
+                <option value="Birthday"></option>
+                <option value="Meeting"></option>
+                <option value="Wedding"></option>
+                <option value="Conference Talk"></option>
+                <option value="Sports Game"></option>
+              </datalist>
+            </label>
+          </div>
+          <div class="form-group">
+            <label for="event-host">
+              <span>Who's Hosting?</span>
+              <input type="text" id="event-host" class="form-control" name="eventHost" value="<%= user %>" placeholder="individual’s name, an organization, etc" required>
+              <div class="tooltip" id="host-tooltip"><span class="fa fa-exclamation"></span>Host is required</div>
+            </label>
+          </div>
+          <div class="form-group">
+            <label for="event-location">
+              <span>Location</span>
+              <input type="text" id="event-location" class="form-control" name="eventLocation" placeholder="include a place or address" required>
+              <div class="tooltip" id="location-tooltip"><span class="fa fa-exclamation"></span>Location is required</div>
+            </label>
+          </div>
+          <div class="form-group">
+            <label for="event-start">
+              <span>Start Time</span>
+              <input type="datetime-local" id="event-start" class="form-control" name="startDate" required>
+            </label>
+          </div>
+          <div class="form-group">
+            <label for="event-end">
+              <span>End Time</span>
+              <input type="datetime-local" id="event-end" class="form-control" name="endDate" required>
+            </label>
+          </div>
+          <div class="form-group">
+            <label for="event-guestList">
+              <span id="guestList-text">Guest List <span id="add-guest">+ Add a Guest</span></span>
+              <fieldset class="form-group" id="event-guestList">
+                  <input type="hidden" name="guestList" id="guestList" value="">
+                  <input type="text" class="form-control form-guestList" placeholder="Guest 1">
+                  <input type="text" class="form-control form-guestList" placeholder="Guest 2">
+              </fieldset>
+            </label>
+          </div>
+          <div class="form-group">
+            <label for="event-message">
+              <span>Details (optional)</span>
+              <textarea rows="4" id="event-message" class="form-control" name="message" placeholder="Tell people more about the event"></textarea>
+            </label>
+          </div>
+            
+          <button type="submit" id="event-submit" class="btn btn-warning btn-lg">Submit</button>
+        </form>
+      </div>
+    </div>
+  
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBxqWRIBy6-Kt2rwMUXYSeU9-1HKZBzbsg&libraries=places"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    
+    <script type="text/javascript" src="/public/js/newEvent.js"></script>
+  
+  </body>
+</html>
