@@ -28,7 +28,7 @@ routes(app, passport);
 
 mongoose.connect(process.env.MONGO_URI || "mongodb://localhost:27017/clementinejs");
 
-var port = 8080;
+var port = process.env.PORT || 8080;
 app.listen(port,  function () {
 	console.log('Node.js listening on port ' + port + '...');
 });
