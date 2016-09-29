@@ -57,9 +57,102 @@ $(document).ready(function(){
 var locationInput = document.getElementById('event-location');
 var autocomplete = new google.maps.places.Autocomplete(locationInput);
 
+// event form front-end validation
+var titleTooltip = $('#title-tooltip');
+var typeTooltip = $('#type-tooltip');
+var hostTooltip = $('#host-tooltip');
+var locationTooltip = $('#location-tooltip');
 
+$('#event-title').focusout(function() {
+  if (!isTitleValid()) {
+    titleTooltip.css('opacity', 1);
+  }
+});
 
-// signup page front-end validation
+$('#event-title').focusin(function() {
+  titleTooltip.css('opacity', 0);
+});
+
+function isTitleValid() {
+  var title = $('#event-title').val();
+  return title === "" ? false : true;
+}
+
+$('#event-type').focusout(function() {
+  if (!isTypeValid()) {
+    typeTooltip.css('opacity', 1);
+  }
+});
+
+$('#event-type').focusin(function() {
+  typeTooltip.css('opacity', 0);
+});
+
+function isTypeValid() {
+  var type = $('#event-type').val();
+  return type === "" ? false : true;
+}
+
+$('#event-host').focusout(function() {
+  if (!isHostValid()) {
+    hostTooltip.css('opacity', 1);
+  }
+});
+
+$('#event-host').focusin(function() {
+  hostTooltip.css('opacity', 0);
+});
+
+function isHostValid() {
+  var host = $('#event-host').val();
+  return host === "" ? false : true;
+}
+
+$('#event-location').focusout(function() {
+  if (!isLocationValid()) {
+    locationTooltip.css('opacity', 1);
+  }
+});
+
+$('#event-location').focusin(function() {
+  locationTooltip.css('opacity', 0);
+});
+
+function isLocationValid() {
+  var location = $('#event-location').val();
+  return location === "" ? false : true;
+}
+
+$('#event-submit').click(function(e) {
+  var preventDefault = false;
+  
+  if (!isTitleValid()) {
+    preventDefault = true;
+    titleTooltip.css('opacity', 1);
+  }
+  
+  if (!isTypeValid()) {
+    preventDefault = true;
+    typeTooltip.css('opacity', 1);
+  }
+  
+  if (!isHostValid()) {
+    preventDefault = true;
+    hostTooltip.css('opacity', 1);
+  }
+  
+  if (!isLocationValid()) {
+    preventDefault = true;
+    locationTooltip.css('opacity', 1);
+  }
+  
+  if (preventDefault) {
+    e.preventDefault();
+  }
+});
+  
+
+// signup form front-end validation
 var nameTooltip = $('#name-tooltip');
 var emailTooltip = $('#email-tooltip');
 
@@ -76,6 +169,11 @@ $('#name-input').focusin(function() {
   nameTooltip.css('opacity', 0);
 });
 
+function isNameValid() {
+  var name = $('#name-input').val();
+  return name === "" ? false : true;
+}
+
 $('#email-input').focusout(function() {
   if (!isEmailValid()) {
     emailTooltip.css('opacity', 1);
@@ -85,11 +183,6 @@ $('#email-input').focusout(function() {
 $('#email-input').focusin(function() {
   emailTooltip.css('opacity', 0);
 });
-
-function isNameValid() {
-  var name = $('#name-input').val();
-  return name === "" ? false : true;
-}
 
 function isEmailValid() {
   var email = $('#email-input').val();
@@ -189,7 +282,7 @@ IssueTracker.prototype = {
   }
 };
 
-$('#submit').click(function(e) {
+$('#signup-submit').click(function(e) {
   var preventDefault = false;
   
   if (!isNameValid()) {

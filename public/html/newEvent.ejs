@@ -3,12 +3,14 @@
     <label for="event-title">
       <span>Event Name</span>
       <input type="text" id="event-title" class="form-control" name="title" placeholder="Add a short, clear name" required>
+      <div class="tooltip" id="title-tooltip"><span class="fa fa-exclamation"></span>Name is required</div>
     </label>
   </div>
   <div class="form-group">
     <label for="event-type">
       <span>What Kind of Event is It?</span>
       <input list="events" id="event-type" class="form-control" name="eventType" placeholder="party, birthday, etc." required>
+      <div class="tooltip" id="type-tooltip"><span class="fa fa-exclamation"></span>Event Type is required</div>
       <datalist id="events">
         <option value="Party"></option>
         <option value="Birthday"></option>
@@ -23,12 +25,14 @@
     <label for="event-host">
       <span>Who's Hosting?</span>
       <input type="text" id="event-host" class="form-control" name="eventHost" value="<%= user %>" placeholder="individual’s name, an organization, etc" required>
+      <div class="tooltip" id="host-tooltip"><span class="fa fa-exclamation"></span>Host is required</div>
     </label>
   </div>
   <div class="form-group">
     <label for="event-location">
       <span>Location</span>
       <input type="text" id="event-location" class="form-control" name="eventLocation" placeholder="include a place or address" required>
+      <div class="tooltip" id="location-tooltip"><span class="fa fa-exclamation"></span>Location is required</div>
     </label>
   </div>
   <div class="form-group">
@@ -47,7 +51,7 @@
     <label for="event-guestList">
       <span id="guestList-text">Guest List <span id="add-guest">+ Add a Guest</span></span>
       <fieldset class="form-group" id="event-guestList">
-          <input type="hidden" name="guestList" id="guestList" value="" required>
+          <input type="hidden" name="guestList" id="guestList" value="">
           <input type="text" class="form-control form-guestList" placeholder="Guest 1">
           <input type="text" class="form-control form-guestList" placeholder="Guest 2">
       </fieldset>
@@ -60,5 +64,5 @@
     </label>
   </div>
     
-  <button type="submit" class="btn btn-warning btn-lg">Submit</button>
+  <button type="submit" id="event-submit" class="btn btn-warning btn-lg">Submit</button>
 </form>
