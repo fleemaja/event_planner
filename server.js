@@ -3,6 +3,7 @@ var express = require('express');
 var routes = require('./app/routes/index.js');
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
+var flash    = require('connect-flash');
 
 var passport = require('passport');
 var session = require('express-session');
@@ -16,6 +17,8 @@ app.set('view engine', 'ejs');
 
 app.use('/controllers', express.static(process.cwd() + '/app/controllers'));
 app.use('/public', express.static(process.cwd() + '/public'));
+
+app.use(flash()); // use connect-flash for flash messages stored in session
 
 app.use(session({ secret: process.env.SUPER_SECRET }));
 app.use(passport.initialize());

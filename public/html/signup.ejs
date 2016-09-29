@@ -1,42 +1,80 @@
-<div>
-    <div>
-        <form action="/signup" method="post">
-            <div class="form-group">
-                <label for="name-input">
-                  <span>Name</span>
-                  <input type="text" id="name-input" class="form-control" name="name" placeholder="Full Name" autocomplete="name" required>
-                  <div class="tooltip" id="name-tooltip"><span class="fa fa-exclamation"></span>Name is required</div>
-                </label>
-            </div>
-            <div class="form-group">
-                <label for="email-input">
-                  <span>Email</span>
-                  <input type="email" id="email-input" class="form-control" name="email" placeholder="name@example.com" autocomplete="email" required>
-                  <div class="tooltip" id="email-tooltip"><span class="fa fa-exclamation"></span>Email address is invalid</div>
-                </label>
-            </div>
-            <div class="form-group">
-                <label for="password-input">
-                  <span>Password</span>
-                  <input type="password" id="password-input" class="form-control" placeholder="New password" name="password" maxlength="50" required>
-                  <div class="tooltip" id="password-1-tooltip"></div>
-                </label>
-            </div>
-            <div class="form-group">
-                <label for="password-input-2">
-                  <span>Verify Password</span>
-                  <input type="password" id="password-input-2" class="form-control" placeholder="Repeat password" maxlength="50" required>
-                  <div class="tooltip" id="password-2-tooltip"></div>
-                </label>
-            </div>
-            <div class="form-group">
-                <label for="bio-input">
-                  <span>Public Bio (optional)</span>
-                  <textarea rows="4" class="form-control" name="publicBio" placeholder="Optional public biographical information (such as employer, job title, birthday, etc)"></textarea>
-                </label>
-            </div>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup</title>
     
-            <button type="submit" id="signup-submit" class="btn btn-warning btn-lg">Signup</button>
-        </form>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+	<link href="/public/css/main.css" rel="stylesheet" type="text/css">
+  </head>
+  
+  <body>
+    
+    <header>
+      <nav class="navbar navbar-default">
+          <span class="fa fa-calendar"></span> Event Planner
+      </nav>
+    </header>
+    
+    <div class="container">
+        <div>
+            <h1>Signup</h1>
+            
+            <!-- show any messages that come back with authentication -->
+            <% if (message.length > 0) { %>
+                <div class="alert alert-danger"><%= message %></div>
+            <% } %>
+            
+            <form action="/signup" method="post" class="signup-login-form">
+                <div class="form-group">
+                    <label for="name-input">
+                      <span>Name</span>
+                      <input type="text" id="name-input" class="form-control" name="name" placeholder="Full Name" autocomplete="name" autofocus required>
+                      <div class="tooltip" id="name-tooltip"><span class="fa fa-exclamation"></span>Name is required</div>
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label for="email-input">
+                      <span>Email</span>
+                      <input type="email" id="email-input" class="form-control" name="email" placeholder="name@example.com" autocomplete="email" required>
+                      <div class="tooltip" id="email-tooltip"><span class="fa fa-exclamation"></span>Email address is invalid</div>
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label for="password-input">
+                      <span>Password</span>
+                      <input type="password" id="password-input" class="form-control" placeholder="New password" name="password" maxlength="50" required>
+                      <div class="tooltip" id="password-1-tooltip"></div>
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label for="password-input-2">
+                      <span>Verify Password</span>
+                      <input type="password" id="password-input-2" class="form-control" placeholder="Repeat password" maxlength="50" required>
+                      <div class="tooltip" id="password-2-tooltip"></div>
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label for="bio-input">
+                      <span>Public Bio (optional)</span>
+                      <textarea rows="4" class="form-control" name="publicBio" placeholder="Optional public biographical information (such as employer, job title, birthday, etc)"></textarea>
+                    </label>
+                </div>
+        
+                <button type="submit" id="signup-submit" class="btn btn-warning btn-lg">Signup</button>
+            </form>
+            
+            <hr>
+        
+            <p>Already have an account? <a href="/login">Login</a></p>
+            <p>Or go <a href="/">home</a>.</p>
+        </div>
     </div>
-</div>
+    
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script type="text/javascript" src="/public/js/signup.js"></script>
+    
+  </body>
+</html>

@@ -21,15 +21,23 @@ module.exports = function (app, passport) {
         });
         
     app.route('/signup')
+      .get(function(req, res) {
+      	res.render(path + '/public/html/signup.ejs', { message: req.flash('signupMessage') });
+      })
       .post(passport.authenticate('local-signup', 
               { successRedirect: '/',
-                failureRedirect: '/'
+                failureRedirect: '/signup',
+                failureFlash: true
               }));
               
     app.route('/login')
+      .get(function(req, res) {
+      	res.render(path + '/public/html/login.ejs', { message: req.flash('loginMessage') });
+      })
       .post(passport.authenticate('local-login', 
               { successRedirect: '/',
-                failureRedirect: '/'
+                failureRedirect: '/login',
+                failureFlash : true // allow flash messages
               }));
 
   	app.route('/logout')

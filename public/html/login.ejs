@@ -1,21 +1,55 @@
-<div>
-    <div>
-        <!-- LOGIN FORM -->
-        <form action="/login" method="post">
-            <div class="form-group">
-                <label for="email-input">
-                    <span>Email</span>
-                    <input type="email" id="email-input" class="form-control" name="email" autocomplete="email" required>
-                </label>
-            </div>
-            <div class="form-group">
-                <label for="password-input">
-                    <span>Password</span>
-                    <input type="password" id="password-input" class="form-control" name="password" required>
-                </label>
-            </div>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
     
-            <button type="submit" class="btn btn-warning btn-lg">Login</button>
-        </form>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+	<link href="/public/css/main.css" rel="stylesheet" type="text/css">
+  </head>
+  
+  <body>
+    
+    <header>
+      <nav class="navbar navbar-default">
+          <span class="fa fa-calendar"></span> Event Planner
+      </nav>
+    </header>
+    
+    <div class="container">
+        <div>
+            <h1>Login</h1>
+            
+            <!-- show any messages that come back with authentication -->
+            <% if (message.length > 0) { %>
+                <div class="alert alert-danger"><%= message %></div>
+            <% } %>
+                
+            <!-- LOGIN FORM -->
+            <form action="/login" method="post" class="signup-login-form">
+                <div class="form-group">
+                    <label for="email-input">
+                        <span>Email</span>
+                        <input type="email" id="email-input" class="form-control" name="email" autocomplete="email" autofocus required>
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label for="password-input">
+                        <span>Password</span>
+                        <input type="password" id="password-input" class="form-control" name="password" required>
+                    </label>
+                </div>
+        
+                <button type="submit" class="btn btn-warning btn-lg">Login</button>
+            </form>
+            
+            <hr>
+        
+            <p>Need an account? <a href="/signup">Signup</a></p>
+            <p>Or go <a href="/">home</a>.</p>
+        </div>
     </div>
-</div>
+  </body>
+</html>

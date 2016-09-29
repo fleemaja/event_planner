@@ -49,8 +49,8 @@ module.exports = function (passport) {
 
             // check to see if there's already a user with that email
             if (user) {
-                return done(null, false);
-            } else if (password.length < 6) {
+                return done(null, false, req.flash('signupMessage', 'That email address is already taken.'));
+            } else if (password.length < 8) {
                 return done(null, false);
             } else {
 
@@ -100,11 +100,11 @@ module.exports = function (passport) {
 	
 	            // if no user is found, return the message
 	            if (!user)
-	                return done(null, false);
+	                return done(null, false, req.flash('loginMessage', 'No user with that email address found.'));
 	
 	            // if the user is found but the password is wrong
 	            if (!user.validPassword(password))
-	                return done(null, false);
+	                return done(null, false, req.flash('loginMessage', 'Oops! Wrong password.'));
 	
 	            // all is well, return successful user
 	            return done(null, user);
