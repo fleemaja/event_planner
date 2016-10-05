@@ -1,7 +1,7 @@
 // event form guest list field
 var Guest = 3;
 $('#add-guest').click(function(e) {
-  $('#event-guestList').append('<input type="text" class="form-control form-guestList" placeholder="Guest ' + Guest + '" style="margin-right: 4px;" >');
+  $('#event-guestList').append('<input type="text" class="form-control form-guestList" placeholder="Guest ' + Guest + '" aria-label="Guest ' + Guest + '" style="margin-right: 4px;" >');
   Guest += 1;
 });
 
