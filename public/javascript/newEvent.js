@@ -104,6 +104,12 @@ $('#event-start').focusout(function() {
   if (!isStartTimeValid()) {
     startTimeTooltip.css('opacity', 1);
   }
+  
+  if (!isEndTimeValid()) {
+    endTimeTooltip.css('opacity', 1);
+  } else {
+    endTimeTooltip.css('opacity', 0);
+  }
 });
 
 $('#event-start').focusin(function() {
