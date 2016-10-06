@@ -26,7 +26,7 @@ app.use(passport.session());
 
 routes(app, passport);
 
-mongoose.connect(process.env.MONGO_URI || "mongodb://localhost:27017/clementinejs");
+mongoose.connect("mongodb://localhost:27017/clementinejs");
 
 var port = process.env.PORT || 8080;
 app.listen(port,  function () {

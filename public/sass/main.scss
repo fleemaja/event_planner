@@ -83,28 +83,6 @@ body {
         form {
             text-align: left;
             
-            #event-guestList {
-                display: inline-block;
-                
-                .form-guestList {
-                    display: inline;
-                    margin-bottom: 4px;
-                    width: 118px;
-                    text-overflow: ellipsis;
-                }
-            }
-            
-            #guestList-text {
-                display: block;
-            }
-            
-             #add-guest {
-                cursor: pointer;
-                color: $orange;
-                float: right;
-                user-select: none;
-            }
-            
             .btn {
                 width: 50%;
                 background: $orange;

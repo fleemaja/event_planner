@@ -1,20 +1,3 @@
-// event form guest list field
-var Guest = 3;
-$('#add-guest').click(function(e) {
-  $('#event-guestList').append('<input type="text" class="form-control form-guestList" placeholder="Guest ' + Guest + '" aria-label="Guest ' + Guest + '" style="margin-right: 4px;" >');
-  Guest += 1;
-});
-
-$('#event-guestList').change(function() {
-  var guests = [];
-  $(".form-guestList").each(function() {
-    var guestVal = $(this).val().replace(/\,/g, '&#44;');
-    guests.push(guestVal);
-  });
-  $('#guestList').val(guests);
-});
-
-
 // set default start and end times on event form
 $(document).ready(function(){
     var startTimeDefault = new Date();
@@ -38,11 +21,14 @@ var titleTooltip = $('#title-tooltip');
 var typeTooltip = $('#type-tooltip');
 var hostTooltip = $('#host-tooltip');
 var locationTooltip = $('#location-tooltip');
+var guestListTooltip = $('#guestList-tooltip');
+var startTimeTooltip = $('#startTime-tooltip');
+var endTimeTooltip = $('#endTime-tooltip');
 
 $('#event-title').focusout(function() {
   if (!isTitleValid()) {
     titleTooltip.css('opacity', 1);
-  }
+  } 
 });
 
 $('#event-title').focusin(function() {
@@ -99,6 +85,59 @@ function isLocationValid() {
   return location === "" ? false : true;
 }
 
+$('#event-guestList').focusout(function() {
+  if (!isGuestListValid()) {
+    guestListTooltip.css('opacity', 1);
+  }
+});
+
+$('#event-guestList').focusin(function() {
+  guestListTooltip.css('opacity', 0);
+});
+
+function isGuestListValid() {
+  var guestList = $('#event-guestList').val();
+  return guestList === "" ? false : true;
+}
+
+$('#event-start').focusout(function() {
+  if (!isStartTimeValid()) {
+    startTimeTooltip.css('opacity', 1);
+  }
+});
+
+$('#event-start').focusin(function() {
+  startTimeTooltip.css('opacity', 0);
+});
+
+function isStartTimeValid() {
+  var startStr = $('#event-start').val();
+  var startTime = new Date(startStr);
+  var nowTime = new Date();
+  
+  return nowTime.getTime() <= startTime.getTime();
+}
+
+$('#event-end').focusout(function() {
+  if (!isEndTimeValid()) {
+    endTimeTooltip.css('opacity', 1);
+  }
+});
+
+$('#event-end').focusin(function() {
+  endTimeTooltip.css('opacity', 0);
+});
+
+function isEndTimeValid() {
+  var startStr = $('#event-start').val();
+  var endStr = $('#event-end').val();
+  
+  var startTime = new Date(startStr);
+  var endTime = new Date(endStr);
+  
+  return startTime.getTime() < endTime.getTime();
+}
+
 $('#event-submit').click(function(e) {
   var preventDefault = false;
   
@@ -120,6 +159,21 @@ $('#event-submit').click(function(e) {
   if (!isLocationValid()) {
     preventDefault = true;
     locationTooltip.css('opacity', 1);
+  }
+  
+  if (!isGuestListValid()) {
+    preventDefault = true;
+    guestListTooltip.css('opacity', 1);
+  }
+  
+  if (!isStartTimeValid()) {
+    preventDefault = true;
+    startTimeTooltip.css('opacity', 1);
+  }
+  
+  if (!isEndTimeValid()) {
+    preventDefault = true;
+    endTimeTooltip.css('opacity', 1);
   }
   
   if (preventDefault) {
