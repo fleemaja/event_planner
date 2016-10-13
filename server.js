@@ -33,6 +33,6 @@ app.listen(port,  function () {
 	console.log('Node.js listening on port ' + port + '...');
 });
 
-setInterval(function() {
-    https.get("https://morning-reaches-98323.herokuapp.com/");
-}, 300000); // ping every 5 minutes to keep heroku site from 'falling asleep'
+// setInterval(function() {
+//     https.get("https://morning-reaches-98323.herokuapp.com/");
+// }, 300000); // ping every 5 minutes to keep heroku site from 'falling asleep'
